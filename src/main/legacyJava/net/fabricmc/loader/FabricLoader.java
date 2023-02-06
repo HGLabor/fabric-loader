@@ -37,7 +37,7 @@ public abstract class FabricLoader implements net.fabricmc.loader.api.FabricLoad
 	public static final FabricLoader INSTANCE = FabricLoaderImpl.InitHelper.get();
 
 	public File getModsDirectory() {
-		return getGameDir().resolve("mods").toFile();
+		return getGameDir().resolve("norisk-mods").toFile(); // This is never used?
 	}
 
 	@Override
