@@ -125,17 +125,21 @@ class FabricMainWindow {
 
 		IconSet icons = new IconSet();
 
+		JTabbedPane tabs = new JTabbedPane();
+		FabricStatusTab infoTab = new FabricStatusTab("Information");
+		infoTab.addChild("If you installed any third party mods - DO NOT REPORT THIS AS A BUG - remove mods and try again!").setInfo();
+		infoTab.addChild("In case you didn't use third party mods: Please file a bug report on our discord.").setInfo();
+		infoTab.addChild("Discord: https://discord.gg/ZhWNDH2V7y").setInfo();
+		contentPane.add(tabs, BorderLayout.CENTER);
+		tabs.addTab(infoTab.node.name, createTreePanel(infoTab.node, infoTab.filterLevel, icons));
 		if (tree.tabs.isEmpty()) {
 			FabricStatusTab tab = new FabricStatusTab("Opening Errors");
 			tab.addChild("No tabs provided! (Something is very broken)").setError();
-			contentPane.add(createTreePanel(tab.node, tab.filterLevel, icons), BorderLayout.CENTER);
+			tabs.addTab(tab.node.name, createTreePanel(tab.node, tab.filterLevel, icons));
 		} else if (tree.tabs.size() == 1) {
 			FabricStatusTab tab = tree.tabs.get(0);
-			contentPane.add(createTreePanel(tab.node, tab.filterLevel, icons), BorderLayout.CENTER);
+			tabs.addTab(tab.node.name, createTreePanel(tab.node, tab.filterLevel, icons));
 		} else {
-			JTabbedPane tabs = new JTabbedPane();
-			contentPane.add(tabs, BorderLayout.CENTER);
-
 			for (FabricStatusTab tab : tree.tabs) {
 				tabs.addTab(tab.node.name, createTreePanel(tab.node, tab.filterLevel, icons));
 			}

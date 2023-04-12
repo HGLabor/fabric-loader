@@ -90,7 +90,7 @@ public final class FabricStatusTree {
 	 * of {@link #ICON_TYPE_TICK} */
 	public static final String ICON_TYPE_LESSER_CROSS = "lesser_cross";
 
-	public final String title;
+	public String title;
 	public final String mainText;
 	public final List<FabricStatusTab> tabs = new ArrayList<>();
 	public final List<FabricStatusButton> buttons = new ArrayList<>();
