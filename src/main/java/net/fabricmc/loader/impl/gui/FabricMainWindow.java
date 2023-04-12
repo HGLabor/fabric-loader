@@ -16,17 +16,7 @@
 
 package net.fabricmc.loader.impl.gui;
 
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.Graphics2D;
-import java.awt.GraphicsEnvironment;
-import java.awt.HeadlessException;
-import java.awt.Image;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -45,22 +35,8 @@ import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 
 import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
-import javax.swing.JTree;
-import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
-import javax.swing.ToolTipManager;
-import javax.swing.UIManager;
-import javax.swing.WindowConstants;
+import javax.swing.*;
+import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
@@ -85,6 +61,19 @@ class FabricMainWindow {
 		System.setProperty("apple.awt.application.name", tree.title);
 
 		UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		try {
+			UIManager.setLookAndFeel(new NimbusLookAndFeel());
+			UIManager.put("control", new Color(27, 30, 43));
+			UIManager.put("info", new Color(27, 30, 43));
+			UIManager.put("nimbusBase", new Color(18, 30, 49));
+			UIManager.put("nimbusDisabledText", new Color(128, 128, 128));
+			UIManager.put("nimbusFocus", new Color(115, 164, 209));
+			UIManager.put("nimbusInfoBlue", new Color(66, 139, 221));
+			UIManager.put("nimbusLightBackground", new Color(29, 29, 27));
+			UIManager.put("nimbusSelectedText", new Color(29, 29, 27));
+			UIManager.put("nimbusSelectionBackground", new Color(10, 188, 233));
+			UIManager.put("text", new Color(230, 230, 230));
+		} catch (UnsupportedLookAndFeelException ignore) {}
 		open0(tree, shouldWait);
 	}
 
